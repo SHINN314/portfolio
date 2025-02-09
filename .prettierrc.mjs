@@ -13,5 +13,4 @@ export default {
 	],
 	useTabs: true,
 	semi: true,
-	bracketSameLine: true,
 };

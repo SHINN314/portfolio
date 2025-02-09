@@ -5,25 +5,25 @@ import Basehead from "../components/BaseHead.astro";
 import BaseHead from "../components/BaseHead.astro";
 
 interface Props {
-  title: string;
-  description: string;
+	title: string;
+	description: string;
 }
 const { title, description } = Astro.props;
 ---
 
 <html lang="ja">
-  <head>
-    <BaseHead title={title} , description={description} />
-  </head>
-  <body>
-    <Header />
-    <div class="container">
-      <slot />
-    </div>
-    <Footer />
-  </body><style>
-    .container {
-      padding: 0 10px;
-    }
-  </style>
+	<head>
+		<BaseHead title={title} , description={description} />
+	</head>
+	<body>
+		<Header />
+		<div class="container">
+			<slot />
+		</div>
+		<Footer />
+	</body><style>
+		.container {
+			padding: 0 10px;
+		}
+	</style>
 </html>
