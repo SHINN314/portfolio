@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import Card from "@components/Card.astro";
 const test = " こんにちは";
 ---
 
@@ -11,7 +12,7 @@ const test = " こんにちは";
 
 <Layout title="home" , description="home">
 	<div class="root-content">
-		<h1>h1 tag ああああ</h1>
+		<h1>HOME</h1>
 		<h2>h2 tag ああああ</h2>
 		<h3>h3 tag ああああ</h3>
 		<h4>h4 tag ああああ</h4>
@@ -22,5 +23,7 @@ const test = " こんにちは";
 			<li>list 1 ああああ</li>
 			<li>list 2 ああああ</li>
 		</ul>
+		<Card headingTitle="Card title">hoge</Card>
+		<Card headingTitle="">No title</Card>
 	</div>
 </Layout>
