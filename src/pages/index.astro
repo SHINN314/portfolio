@@ -3,6 +3,29 @@ import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
 import Image from "astro/components/Image.astro";
 import icon from "@pictures/icon.webp";
+
+const clubProperty: { title: string; description: string }[] = [
+	{
+		title: "team411",
+		description:
+			"電気通信大学 産学官連携センター主催「ベンチャー工房」所属の大学公認サークルです。UEC Dashboardというプロジェクトに携わったり、プロジェクトのデータ分析を行っています。",
+	},
+	{
+		title: "ピアノの会",
+		description:
+			"ゆるくまったりピアノを弾いているサークルです。ピアノは弾けないので聞き専ですが、絶賛練習中です。",
+	},
+	{
+		title: "執行委員会",
+		description:
+			"いわゆる生徒会的な立ち位置の組織です。2024年度ホームページの作成を担当しました。現在は引退済み。",
+	},
+	{
+		title: "調布祭実行委員会",
+		description:
+			"電気通信大学の学園祭である「調布祭」を運営している委員会です。第74回では技術局に所属しホームページの企画一覧の作成を担当しました。現在は引退済み。",
+	},
+];
 ---
 
 <style>
@@ -10,7 +33,7 @@ import icon from "@pictures/icon.webp";
 		margin: 0 15%;
 	}
 
-	.card-container {
+	.contents-container {
 		padding: 0 10%;
 	}
 
@@ -32,12 +55,20 @@ import icon from "@pictures/icon.webp";
 	.name {
 		font-size: 2.5rem;
 	}
+
+	.property-content {
+		font-size: 1.5rem;
+	}
+
+	.club-container {
+		padding: 0 1rem;
+	}
 </style>
 
 <Layout title="home" , description="home">
 	<div class="root-content">
 		<h1>HOME</h1>
-		<div class="card-container">
+		<div class="contents-container">
 			<Card headingTitle="Profile">
 				<div class="profile-container">
 					<Image
@@ -49,9 +80,40 @@ import icon from "@pictures/icon.webp";
 					/>
 					<div class="profile-content">
 						<p class="name">木村 慎之介</p>
+						<table class="property-content">
+							<tbody>
+								<tr>
+									<th>Age:</th>
+									<td>20</td>
+								</tr>
+								<tr>
+									<th>University:</th>
+									<td>電気通信大学</td>
+								</tr>
+								<tr>
+									<th>Major:</th>
+									<td>コンピュータサイエンス</td>
+								</tr>
+								<tr>
+									<th>Favorite:</th>
+									<td>アニメ・音楽・数学</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</Card>
+			<h2>Clubs</h2>
+			<h3>team411</h3>
+			<div class="club-container">
+				<p>
+					電気通信大学
+					産学官連携センター主催「ベンチャー工房」主催の大学公認サークルです。UEC
+					Dashboardというプロジェクトに携わったり、プロジェクトのデータ分析などをしています。
+				</p>
+			</div>
+			<h3>ピアノの会</h3>
+			<div class="club-container"></div>
 		</div>
 	</div>
 </Layout>
