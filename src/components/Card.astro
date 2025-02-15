@@ -1,0 +1,39 @@
+---
+import { string } from "astro:schema";
+
+interface Props {
+	headingTitle: string;
+}
+
+const { headingTitle } = Astro.props;
+---
+
+<style>
+	.root-container {
+		background-color: white;
+		margin: 1rem 0;
+		padding: 1rem;
+		width: 100%;
+		border-radius: 10px;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+	}
+
+	.card-title {
+		border-bottom: solid #87cefa;
+		margin: 1rem 0;
+		padding-bottom: 1rem;
+		font-size: 2rem;
+	}
+
+	.content-container {
+	}
+</style>
+
+<div class="root-container">
+	<div class="card-title">
+		{headingTitle}
+	</div>
+	<div class="content-container">
+		<slot />
+	</div>
+</div>

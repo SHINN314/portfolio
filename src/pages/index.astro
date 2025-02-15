@@ -1,64 +1,124 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Layout from "@layouts/Layout.astro";
+import Card from "@components/Card.astro";
+import Image from "astro/components/Image.astro";
+import icon from "@pictures/icon.webp";
+
+const clubProperties: { title: string; description: string }[] = [
+	{
+		title: "team411",
+		description:
+			"電気通信大学 産学官連携センター主催「ベンチャー工房」所属の大学公認サークルです。UEC Dashboardというプロジェクトに携わったり、プロジェクトのデータ分析を行っています。",
+	},
+	{
+		title: "ピアノの会",
+		description:
+			"ゆるくまったりピアノを弾いているサークルです。ピアノは弾けないので聞き専ですが、絶賛練習中です。",
+	},
+	{
+		title: "執行委員会",
+		description:
+			"いわゆる生徒会的な立ち位置の組織です。2024年度ホームページの作成を担当しました。現在は引退済み。",
+	},
+	{
+		title: "調布祭実行委員会",
+		description:
+			"電気通信大学の学園祭である「調布祭」を運営している委員会です。第74回では技術局に所属しホームページの企画一覧の作成を担当しました。現在は引退済み。",
+	},
+];
 ---
 
-<!doctype html>
-<html lang="ja">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <h1>🧑‍🚀 Hello, Astronaut!</h1>
-      <p>
-        Welcome to the official <a href="https://astro.build/">Astro</a> blog starter
-        template. This template serves as a lightweight, minimally-styled starting
-        point for anyone looking to build a personal website, blog, or portfolio
-        with Astro.
-      </p>
-      <p>
-        This template comes with a few integrations already configured in your
-        <code>astro.config.mjs</code> file. You can customize your setup with
-        <a href="https://astro.build/integrations">Astro Integrations</a> to add
-        tools like Tailwind, React, or Vue to your project.
-      </p>
-      <p>Here are a few ideas on how to get started with the template:</p>
-      <ul>
-        <li>Edit this page in <code>src/pages/index.astro</code></li>
-        <li>
-          Edit the site header items in <code>src/components/Header.astro</code>
-        </li>
-        <li>
-          Add your name to the footer in <code>src/components/Footer.astro</code
-          >
-        </li>
-        <li>
-          Check out the included blog posts in <code>src/content/blog/</code>
-        </li>
-        <li>
-          Customize the blog post page layout in <code
-            >src/layouts/BlogPost.astro</code
-          >
-        </li>
-      </ul>
-      <p>
-        Have fun! If you get stuck, remember to <a
-          href="https://docs.astro.build/"
-          >read the docs
-        </a> or <a href="https://astro.build/chat">join us on Discord</a> to ask
-        questions.
-      </p>
-      <p>
-        Looking for a blog template with a bit more personality? Check out <a
-          href="https://github.com/Charca/astro-blog-template"
-          >astro-blog-template
-        </a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-      </p>
-    </main>
-    <Footer />
-  </body>
-</html>
+<style>
+	.root-content {
+		margin: 0 15%;
+	}
+
+	.contents-container {
+		padding: 0 10%;
+	}
+
+	.profile-container {
+		display: flex;
+		justify-content: start;
+	}
+
+	.icon-setting {
+		object-fit: cover;
+		border-radius: 100%;
+		padding: 2rem;
+	}
+
+	.profile-content {
+		padding: 1rem 2rem;
+	}
+
+	.name {
+		font-size: 2.5rem;
+	}
+
+	.property-content {
+		font-size: 1.5rem;
+	}
+
+	.club-container {
+		margin: 2rem 0;
+	}
+
+	.club-description {
+		padding: 0 1rem;
+	}
+</style>
+
+<Layout title="home" , description="home">
+	<div class="root-content">
+		<h1>HOME</h1>
+		<div class="contents-container">
+			<Card headingTitle="Profile">
+				<div class="profile-container">
+					<Image
+						src={icon}
+						alt="アイコンの画像"
+						width="300"
+						height="300"
+						class="icon-setting"
+					/>
+					<div class="profile-content">
+						<p class="name">木村 慎之介</p>
+						<table class="property-content">
+							<tbody>
+								<tr>
+									<th>Age:</th>
+									<td>20</td>
+								</tr>
+								<tr>
+									<th>University:</th>
+									<td>電気通信大学</td>
+								</tr>
+								<tr>
+									<th>Major:</th>
+									<td>コンピュータサイエンス</td>
+								</tr>
+								<tr>
+									<th>Favorite:</th>
+									<td>アニメ・音楽・数学</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</Card>
+			<h2>Clubs</h2>
+			<p>所属しているサークル一覧です。</p>
+			{
+				clubProperties.map((clubProperty) => (
+					<div class="club-container">
+						<h3>{clubProperty.title}</h3>
+						<div class="club-description">
+							<p>{clubProperty.description}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</Layout>

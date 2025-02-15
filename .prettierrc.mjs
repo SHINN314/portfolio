@@ -10,4 +10,6 @@ export default {
       },
     },
   ],
+  useTabs: true,
+  semi: true,
 };
