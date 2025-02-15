@@ -1,29 +1,57 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
-const test = " こんにちは";
+import Image from "astro/components/Image.astro";
+import icon from "@pictures/icon.webp";
 ---
 
 <style>
 	.root-content {
 		margin: 0 15%;
 	}
+
+	.card-container {
+		padding: 0 10%;
+	}
+
+	.profile-container {
+		display: flex;
+		justify-content: start;
+	}
+
+	.icon-setting {
+		object-fit: cover;
+		border-radius: 100%;
+		padding: 2rem;
+	}
+
+	.profile-content {
+		padding: 1rem 2rem;
+	}
+
+	.name {
+		font-size: 2.5rem;
+	}
 </style>
 
 <Layout title="home" , description="home">
 	<div class="root-content">
 		<h1>HOME</h1>
-		<h2>h2 tag ああああ</h2>
-		<h3>h3 tag ああああ</h3>
-		<h4>h4 tag ああああ</h4>
-		<h5>h5 tag ああああ</h5>
-		<h6>h6 tag ああああ</h6>
-		<p>はるはあけぼの<br />ようようあけゆく...</p>
-		<ul>
-			<li>list 1 ああああ</li>
-			<li>list 2 ああああ</li>
-		</ul>
-		<Card headingTitle="Card title">hoge</Card>
-		<Card headingTitle="">No title</Card>
+		<div class="card-container">
+			<Card headingTitle="Profile">
+				<div class="profile-container">
+					<Image
+						src={icon}
+						alt="アイコンの画像"
+						width="300"
+						height="300"
+						class="icon-setting"
+					/>
+					<div class="profile-content">
+						<p class="name">木村 慎之介</p>
+					</div>
+				</div>
+			</Card>
+		</div>
 	</div>
 </Layout>
