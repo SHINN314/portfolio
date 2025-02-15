@@ -4,7 +4,7 @@ import Card from "@components/Card.astro";
 import Image from "astro/components/Image.astro";
 import icon from "@pictures/icon.webp";
 
-const clubProperty: { title: string; description: string }[] = [
+const clubProperties: { title: string; description: string }[] = [
 	{
 		title: "team411",
 		description:
@@ -61,6 +61,10 @@ const clubProperty: { title: string; description: string }[] = [
 	}
 
 	.club-container {
+		margin: 2rem 0;
+	}
+
+	.club-description {
 		padding: 0 1rem;
 	}
 </style>
@@ -104,16 +108,17 @@ const clubProperty: { title: string; description: string }[] = [
 				</div>
 			</Card>
 			<h2>Clubs</h2>
-			<h3>team411</h3>
-			<div class="club-container">
-				<p>
-					電気通信大学
-					産学官連携センター主催「ベンチャー工房」主催の大学公認サークルです。UEC
-					Dashboardというプロジェクトに携わったり、プロジェクトのデータ分析などをしています。
-				</p>
-			</div>
-			<h3>ピアノの会</h3>
-			<div class="club-container"></div>
+			<p>所属しているサークル一覧です。</p>
+			{
+				clubProperties.map((clubProperty) => (
+					<div class="club-container">
+						<h3>{clubProperty.title}</h3>
+						<div class="club-description">
+							<p>{clubProperty.description}</p>
+						</div>
+					</div>
+				))
+			}
 		</div>
 	</div>
 </Layout>
