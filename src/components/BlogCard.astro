@@ -1,5 +1,6 @@
 ---
 import ogs from "open-graph-scraper";
+import Image from "astro/components/Image.astro";
 
 interface Props {
 	slug: string;
@@ -29,15 +30,36 @@ const ogTitle = title || websiteData?.ogTitle || "タイトルの取得に失敗
 const ogDescription = description || websiteData?.ogDescription || "";
 ---
 
+<style>
+	.root-container {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		width: 100%;
+	}
+
+	.description-container {
+		width: 100%;
+	}
+
+	.image-container {
+		height: auto;
+		width: 100%;
+	}
+</style>
+
 <a href={slug} , target="_blank">
 	{caption && <p>{caption}</p>}
-	<div>
-		<div>
-			<img src={ogImage} alt="" />
-		</div>
-		<div>
-			<h1>{ogTitle}</h1>
+	<div class="root-container">
+		<div class="description-container">
+			<h3>{ogTitle}</h3>
 			<p>{ogDescription}</p>
 		</div>
-	</div>
-</a>
+		<Image
+			src={ogImage}
+			alt=""
+			width="600"
+			height="300"
+			class="image-container"
+		/>
+	</div></a
+>
