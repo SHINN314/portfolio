@@ -1,3 +1,43 @@
 ---
 import ogs from "open-graph-scraper";
+
+interface Props {
+	slug: string;
+	caption?: string;
+	title?: string;
+	image?: string;
+	description?: string;
+}
+
+const { slug, caption, title, image, description } = Astro.props;
+
+// ogsで情報を取得する関数
+async function getOpenGraphData(url: string) {
+	const option = { url };
+	try {
+		const { result } = await ogs(option);
+		return result;
+	} catch (error) {
+		console.log("Error fetching Open Graph Data:", error);
+		return {};
+	}
+}
+
+const websiteData = await getOpenGraphData(slug);
+const ogImage = image || websiteData?.ogImage?.[0]?.url;
+const ogTitle = title || websiteData?.ogTitle || "タイトルの取得に失敗しました";
+const ogDescription = description || websiteData?.ogDescription || "";
 ---
+
+<a href={slug} , target="_blank">
+	{caption && <p>{caption}</p>}
+	<div>
+		<div>
+			<img src={ogImage} alt="" />
+		</div>
+		<div>
+			<h1>{ogTitle}</h1>
+			<p>{ogDescription}</p>
+		</div>
+	</div>
+</a>
