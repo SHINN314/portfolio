@@ -45,8 +45,17 @@ const ogDescription = description || websiteData?.ogDescription || "";
 	}
 
 	.description-container {
-		padding: 0.25rem 1rem;
+		padding: 0 1rem;
 		align-self: center;
+		height: inherit;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		transition-duration: 300ms;
+	}
+
+	.description-container:hover {
+		background: #eee;
+		border-radius: 10px 0 0 10px;
 	}
 
 	.site-description {
