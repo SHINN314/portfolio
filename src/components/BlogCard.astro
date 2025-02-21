@@ -1,0 +1,83 @@
+---
+import ogs from "open-graph-scraper";
+import { Image } from "astro:assets";
+interface Props {
+	slug: string;
+	caption?: string;
+	title?: string;
+	image?: string;
+	description?: string;
+}
+
+const { slug, caption, title, image, description } = Astro.props;
+
+// ogsで情報を取得する関数
+async function getOpenGraphData(url: string) {
+	const option = { url };
+	try {
+		const { result } = await ogs(option);
+		return result;
+	} catch (error) {
+		console.log("Error fetching Open Graph Data:", error);
+		return {};
+	}
+}
+
+const websiteData = await getOpenGraphData(slug);
+const ogImage = image || websiteData?.ogImage?.[0]?.url;
+const ogTitle = title || websiteData?.ogTitle || "タイトルの取得に失敗しました";
+const ogDescription = description || websiteData?.ogDescription || "";
+---
+
+<style>
+	.a {
+		text-overflow: ellipsis;
+	}
+	.root-container {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		width: 100%;
+		height: 150px;
+		border: solid 1px;
+		border-radius: 10px;
+		border-color: #87ceeb;
+	}
+
+	.description-container {
+		padding: 0 1rem;
+		align-self: center;
+		height: inherit;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		transition-duration: 300ms;
+	}
+
+	.description-container:hover {
+		background: #eee;
+		border-radius: 10px 0 0 10px;
+	}
+
+	.site-description {
+		color: #444;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.image-container {
+		height: inherit;
+		width: auto;
+		border-radius: 0 10px 10px 0;
+		justify-self: end;
+	}
+</style>
+
+<a href={slug} , target="_blank" class="a">
+	{caption && <p>{caption}</p>}
+	<div class="root-container">
+		<div class="description-container">
+			<h3>{ogTitle}</h3>
+			<p class="site-description">{ogDescription}</p>
+		</div>
+		<Image src={ogImage} alt="" inferSize class="image-container" />
+	</div></a
+>

@@ -1,14 +1,16 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import icon from "@pictures/icon.webp";
+import BlogCard from "@components/BlogCard.astro";
 
-const clubProperties: { title: string; description: string }[] = [
+const clubProperties: { title: string; description: string; url?: string }[] = [
 	{
 		title: "team411",
 		description:
 			"電気通信大学 産学官連携センター主催「ベンチャー工房」所属の大学公認サークルです。UEC Dashboardというプロジェクトに携わったり、プロジェクトのデータ分析を行っています。",
+		url: "https://team411.net/",
 	},
 	{
 		title: "ピアノの会",
@@ -24,6 +26,7 @@ const clubProperties: { title: string; description: string }[] = [
 		title: "調布祭実行委員会",
 		description:
 			"電気通信大学の学園祭である「調布祭」を運営している委員会です。第74回では技術局に所属しホームページの企画一覧の作成を担当しました。現在は引退済み。",
+		url: "https://www.chofusai.jp/",
 	},
 ];
 ---
@@ -78,6 +81,7 @@ const clubProperties: { title: string; description: string }[] = [
 					<Image
 						src={icon}
 						alt="アイコンの画像"
+						inferSize
 						width="300"
 						height="300"
 						class="icon-setting"
@@ -115,6 +119,7 @@ const clubProperties: { title: string; description: string }[] = [
 						<h3>{clubProperty.title}</h3>
 						<div class="club-description">
 							<p>{clubProperty.description}</p>
+							{clubProperty.url && <BlogCard slug={clubProperty.url} />}
 						</div>
 					</div>
 				))
