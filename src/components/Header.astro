@@ -15,19 +15,27 @@
 		font-weight: 500;
 	}
 
-	.link-content {
+	.links-content {
 		display: flex;
 		font-size: 1.5rem;
 		font-weight: 500;
+	}
+
+	.link-content {
+		transition-duration: 300ms;
+	}
+
+	.link-content:hover {
+		color: #ccc;
 	}
 </style>
 
 <header class="root-container">
 	<div class="site-title"><a href="/	">SHINNの研究室</a></div>
 	<div>
-		<ul class="link-content">
-			<li><a href="/">HOME</a></li>
-			<li><a href="/blog/">BLOG</a></li>
+		<ul class="links-content">
+			<li><a href="/" class="link-content">HOME</a></li>
+			<li><a href="/blog/" class="link-content">BLOG</a></li>
 		</ul>
 	</div>
 </header>
