@@ -10,6 +10,7 @@
 			"@layouts/*": ["src/layouts/*"],
 			"@styles/*": ["src/styles/*"],
 			"@pictures/*": ["src/pictures/*"]
-		}
+		},
+		"allowSyntheticDefaultImports": true
 	}
 }
