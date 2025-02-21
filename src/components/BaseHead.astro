@@ -1,7 +1,7 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import stylesheet from "@styles/global.css";
+import "@styles/global.css";
 import { SITE_TITLE } from "../consts";
 import "@fontsource-variable/m-plus-1";
 
@@ -28,7 +28,6 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 	href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
-<link rel="stylesheet" href={stylesheet} />
 
 <!-- Font preloads -->
 <link
