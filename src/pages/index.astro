@@ -37,17 +37,22 @@ const clubProperties: { title: string; description: string; url?: string }[] = [
 	}
 
 	.profile-container {
-		/* display: flex; */
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.icon-setting {
+		justify-content: center;
+		align-items: center;
 		object-fit: cover;
 		border-radius: 100%;
-		padding: 2rem;
+		padding: 1rem;
 	}
 
 	.profile-content {
-		padding: 1rem 2rem;
+		padding: 1rem;
 	}
 
 	.name {
@@ -71,7 +76,6 @@ const clubProperties: { title: string; description: string; url?: string }[] = [
 	<div class="root-content">
 		<h1>HOME</h1>
 		<div class="contents-container">
-			<Card headingTitle="" />
 			<Card headingTitle="Profile">
 				<div class="profile-container">
 					<Image

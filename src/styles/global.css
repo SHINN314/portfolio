@@ -6,7 +6,7 @@ body {
 h1 {
 	font-size: 2rem;
 	border-bottom: solid #87cefa;
-	margin: 3rem 0;
+	margin: 1.5rem 0;
 	padding-bottom: 1rem;
 }
 
@@ -14,7 +14,7 @@ h2 {
 	font-size: 1.5rem;
 	border-left: 0.5rem solid #87cefa;
 	padding: 0 0.5rem;
-	margin: 2rem 0;
+	margin: 1.5rem 0;
 }
 
 h3 {
