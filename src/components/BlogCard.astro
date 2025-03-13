@@ -33,51 +33,43 @@ const ogDescription = description || websiteData?.ogDescription || "";
 	.a {
 		text-overflow: ellipsis;
 	}
+
 	.root-container {
-		display: grid;
-		grid-template-columns: 1fr auto;
-		width: 100%;
-		height: 150px;
-		border: solid 1px;
+		border: solid #87cefa 1px;
 		border-radius: 10px;
-		border-color: #87ceeb;
+		padding: 1rem;
 	}
 
 	.description-container {
-		padding: 0 1rem;
-		align-self: center;
-		height: inherit;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		transition-duration: 300ms;
 	}
 
-	.description-container:hover {
-		background: #eee;
-		border-radius: 10px 0 0 10px;
+	.root-container:hover {
+		background-color: #eee;
+	}
+
+	.title {
 	}
 
 	.site-description {
-		color: #444;
-		overflow: hidden;
 		text-overflow: ellipsis;
+		color: #555;
+		max-height: 3rem;
 	}
 
 	.image-container {
-		height: inherit;
-		width: auto;
-		border-radius: 0 10px 10px 0;
-		justify-self: end;
+		width: 100%;
+		height: auto;
+		border-radius: 10px;
 	}
 </style>
 
 <a href={slug} , target="_blank" class="a">
 	{caption && <p>{caption}</p>}
 	<div class="root-container">
+		<Image src={ogImage} alt="" inferSize class="image-container" />
 		<div class="description-container">
-			<h3>{ogTitle}</h3>
+			<div class="title">{ogTitle}</div>
 			<p class="site-description">{ogDescription}</p>
 		</div>
-		<Image src={ogImage} alt="" inferSize class="image-container" />
 	</div></a
 >
