@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 body {
 	font-family: "M PLUS 1 Variable", sans-serif;
 	color: #222222;
