@@ -31,7 +31,6 @@ const ogDescription = description || websiteData?.ogDescription || "";
 
 <style>
 	.a {
-		text-overflow: ellipsis;
 	}
 
 	.root-container {
@@ -41,6 +40,8 @@ const ogDescription = description || websiteData?.ogDescription || "";
 	}
 
 	.description-container {
+		margin-top: 1rem;
+		box-sizing: border-box;
 	}
 
 	.root-container:hover {
@@ -51,9 +52,10 @@ const ogDescription = description || websiteData?.ogDescription || "";
 	}
 
 	.site-description {
+		overflow: hidden;
 		text-overflow: ellipsis;
-		color: #555;
-		max-height: 3rem;
+		color: #777;
+		max-height: 6rem;
 	}
 
 	.image-container {
