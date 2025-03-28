@@ -11,13 +11,28 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
+<style>
+	.root-container {
+		padding: 0 5%;
+	}
+	@media screen and (768px <= width < 1140px) {
+		.root-container {
+			padding: 0 10%;
+		}
+	}
+	@media screen and (1140px <= width) {
+		.root-container {
+			padding: 0 25%;
+		}
+	}
+</style>
 <html lang="ja">
 	<head>
 		<BaseHead title={title} , description={description} />
 	</head>
 	<body>
 		<Header />
-		<div class="container">
+		<div class="root-container">
 			<slot />
 		</div>
 		<Footer />
