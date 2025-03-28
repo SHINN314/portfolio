@@ -1,6 +1,33 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const blogPosts = await getCollection("blog");
+console.log(typeof blogPosts[0]);
+
+function compareFunction(a, b) {
+	return a.data.pubDate - b.data.pubDate;
+}
+
+blogPosts.sort(compareFunction);
+blogPosts.map((post) => console.log(post.data.pubDate)); // debug
 ---
 
-<Layout title="blog" , description="about blog"><p>Now on loading...</p></Layout
->
+<style>
+	.root-container {
+	}
+</style>
+<Layout title="blog" , description="about blog">
+	<div>
+		<h1>Blog</h1>
+		<ul>
+			{
+				blogPosts.map((post) => (
+					<li>
+						<a href={`/blog/${post.id}`}>{post.data.title} </a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</Layout>
