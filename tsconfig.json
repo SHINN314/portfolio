@@ -9,7 +9,8 @@
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@styles/*": ["src/styles/*"],
-			"@pictures/*": ["src/pictures/*"]
+			"@pictures/*": ["src/pictures/*"],
+			"@content/*": ["src/content/*"]
 		},
 		"allowSyntheticDefaultImports": true
 	}
