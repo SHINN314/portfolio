@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
 import { Image } from "astro:assets";
 import icon from "@pictures/icon.webp";
-import BlogCard from "@components/BlogCard.astro";
+import LinkCard from "@components/LinkCard.astro";
 
 const clubProperties: { title: string; description: string; url?: string }[] = [
 	{
@@ -133,7 +133,7 @@ const clubProperties: { title: string; description: string; url?: string }[] = [
 					<h3>{clubProperty.title}</h3>
 					<div class="club-description">
 						<p>{clubProperty.description}</p>
-						{clubProperty.url && <BlogCard slug={clubProperty.url} />}
+						{clubProperty.url && <LinkCard slug={clubProperty.url} />}
 					</div>
 				</div>
 			))

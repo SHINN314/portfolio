@@ -3,13 +3,12 @@ import ogs from "open-graph-scraper";
 import { Image } from "astro:assets";
 interface Props {
 	slug: string;
-	caption?: string;
 	title?: string;
 	image?: string;
 	description?: string;
 }
 
-const { slug, caption, title, image, description } = Astro.props;
+const { slug, title, image, description } = Astro.props;
 
 // ogsで情報を取得する関数
 async function getOpenGraphData(url: string) {
