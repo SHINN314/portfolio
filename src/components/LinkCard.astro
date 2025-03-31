@@ -1,6 +1,7 @@
 ---
 import ogs from "open-graph-scraper";
 import { Image } from "astro:assets";
+import noImage from "@pictures/no_image.webp";
 
 interface Props {
 	slug: string;
@@ -24,12 +25,12 @@ async function getOpenGraphData(url: string) {
 }
 
 const websiteData = await getOpenGraphData(slug);
-const ogImage =
-	image ||
-	websiteData?.ogImage?.[0]?.url ||
-	"../content/pictures/no_image.webp";
+const ogImage = image || websiteData?.ogImage?.[0]?.url || noImage;
 const ogTitle = title || websiteData?.ogTitle || "タイトルの取得に失敗しました";
-const ogDescription = description || websiteData?.ogDescription || "";
+const ogDescription =
+	description ||
+	websiteData?.ogDescription ||
+	websiteData?.ogTitle + "のwebサイト";
 ---
 
 <style>
