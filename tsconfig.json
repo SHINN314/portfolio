@@ -9,7 +9,7 @@
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@styles/*": ["src/styles/*"],
-			"@pictures/*": ["src/content/pictures/*"]
+			"@images*": ["src/images/*"]
 		},
 		"allowSyntheticDefaultImports": true
 	}

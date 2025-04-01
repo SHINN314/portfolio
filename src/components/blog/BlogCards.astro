@@ -1,0 +1,26 @@
+---
+import BlogPost from "@layouts/BlogPost.astro";
+import BlogCard from "./BlogCard.astro";
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const blogPosts = await getCollection("blog");
+
+function compareFunction(a: any, b: any) {
+	return a.data.pubDate - b.data.pubDate;
+}
+
+blogPosts.sort(compareFunction);
+---
+
+<div>
+	{
+		blogPosts.map((post) => (
+			<BlogCard
+				picture={post.data.heroImage}
+				title={post.data.title}
+				pubDate={post.data.pubDate}
+			/>
+		))
+	}
+</div>

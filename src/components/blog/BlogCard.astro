@@ -1,13 +1,21 @@
 ---
+import noImage from "@pictures/no_image.webp";
+import Image from "astro/components/Image.astro";
+
 interface Props {
 	picture?: string;
 	title: string;
 	pubDate: Date | string;
-	tags: string[];
 }
 
-const { picture, title, pubDate, tags } = Astro.props;
+const { picture, title, pubDate } = Astro.props;
+
+const displayPicture: any = picture | noImage;
 ---
 
 <style></style>
-<div></div>
+<div>
+	<Image src={displayPicture} inferSize alt="" />
+	<h3>{title}</h3>
+	<p>{pubDate}</p>
+</div>
