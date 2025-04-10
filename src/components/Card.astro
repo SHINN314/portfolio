@@ -2,7 +2,7 @@
 import { string } from "astro:schema";
 
 interface Props {
-	headingTitle: string;
+	headingTitle?: string;
 }
 
 const { headingTitle } = Astro.props;
@@ -30,9 +30,7 @@ const { headingTitle } = Astro.props;
 </style>
 
 <div class="root-container">
-	<div class="card-title">
-		{headingTitle}
-	</div>
+	{headingTitle && <div class="card-title">{headingTitle}</div>}
 	<div class="content-container">
 		<slot />
 	</div>

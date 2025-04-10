@@ -1,21 +1,18 @@
 ---
 import noImage from "@images/no_image.webp";
 import Image from "astro/components/Image.astro";
+import Card from "@components/Card.astro";
 
 interface Props {
+	postId: string;
 	image?: string | null;
 	title: string;
-	pubDate: Date | string;
+	pubDate: Date;
 }
 
-const { image, title, pubDate } = Astro.props;
-
-const testImage: string =
-	"https://res.cloudinary.com/dvnauwts5/image/upload/v1744280150/profile_icon_ondp1v.jpg";
+const { postId, image, title, pubDate } = Astro.props;
 
 const displayImage: any = image || noImage;
-console.log(image);
-console.log(title);
 ---
 
 <style>
@@ -27,9 +24,24 @@ console.log(title);
 		width: 100%;
 		height: auto;
 	}
+
+	.post-title {
+		display: flex;
+		justify-content: center;
+		margin: 1rem 0;
+		font-size: 2rem;
+	}
+
+	.post-date {
+		display: flex;
+		justify-content: center;
+		margin: 1rem 0;
+	}
 </style>
-<div class="root-container">
-	<Image src={displayImage} inferSize alt="" class="hero-image-container" />
-	<h3>{title}</h3>
-	<p>{pubDate}</p>
-</div>
+<Card>
+	<a href={`/blog/${postId}`}>
+		<Image src={displayImage} inferSize alt="" class="hero-image-container" />
+		<div class="post-title">{title}</div>
+		<div class="post-date">{pubDate.getFullYear()}年{pubDate.getDay()}月</div>
+	</a>
+</Card>
