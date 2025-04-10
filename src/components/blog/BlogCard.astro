@@ -1,21 +1,35 @@
 ---
-import noImage from "@pictures/no_image.webp";
+import noImage from "@images/no_image.webp";
 import Image from "astro/components/Image.astro";
 
 interface Props {
-	picture?: string;
+	image?: string | null;
 	title: string;
 	pubDate: Date | string;
 }
 
-const { picture, title, pubDate } = Astro.props;
+const { image, title, pubDate } = Astro.props;
 
-const displayPicture: any = picture | noImage;
+const testImage: string =
+	"https://res.cloudinary.com/dvnauwts5/image/upload/v1744280150/profile_icon_ondp1v.jpg";
+
+const displayImage: any = image || noImage;
+console.log(image);
+console.log(title);
 ---
 
-<style></style>
-<div>
-	<Image src={displayPicture} inferSize alt="" />
+<style>
+	.root-container {
+		width: 100%;
+	}
+
+	.hero-image-container {
+		width: 100%;
+		height: auto;
+	}
+</style>
+<div class="root-container">
+	<Image src={displayImage} inferSize alt="" class="hero-image-container" />
 	<h3>{title}</h3>
 	<p>{pubDate}</p>
 </div>

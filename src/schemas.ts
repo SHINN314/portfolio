@@ -6,7 +6,7 @@ const blogSchema = z.object({
 	pubDate: z.coerce.date(),
 	updatedDate: z.coerce.date().optional(),
 	tags: z.array(z.string()),
-	image: z.string(),
+	image: z.string().nullish(),
 	imageAlt: z.string().optional(),
 });
 

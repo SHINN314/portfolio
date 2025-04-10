@@ -13,14 +13,12 @@ function compareFunction(a: any, b: any) {
 blogPosts.sort(compareFunction);
 ---
 
-<div>
-	{
-		blogPosts.map((post) => (
-			<BlogCard
-				picture={post.data.image}
-				title={post.data.title}
-				pubDate={post.data.pubDate}
-			/>
-		))
-	}
-</div>
+{
+	blogPosts.map((post) => (
+		<BlogCard
+			image={post.data.image}
+			title={post.data.title}
+			pubDate={post.data.pubDate}
+		/>
+	))
+}
