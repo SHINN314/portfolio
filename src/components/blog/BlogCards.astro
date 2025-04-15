@@ -22,16 +22,22 @@ blogPosts.sort(compareFunction);
 			grid-template-columns: 1fr 1fr;
 		}
 	}
+
+	.blog-card-container {
+		margin: 1rem;
+	}
 </style>
 <div class="root-container">
 	{
 		blogPosts.map((post) => (
-			<BlogCard
-				postId={post.id}
-				image={post.data.image}
-				title={post.data.title}
-				pubDate={post.data.pubDate}
-			/>
+			<div class="blog-card-container">
+				<BlogCard
+					postId={post.id}
+					image={post.data.image}
+					title={post.data.title}
+					pubDate={post.data.pubDate}
+				/>
+			</div>
 		))
 	}
 </div>
