@@ -1,0 +1,71 @@
+---
+import axios from "axios";
+import BlogCard from "./BlogCard.astro";
+import ogs from "open-graph-scraper";
+// get qiita blogs
+async function getQiita() {
+	const url = "https://qiita.com/api/v2/authenticated_user/items";
+	const apiKey = import.meta.env.QIITA_API_TOKEN;
+	const res = await axios.get(url, {
+		headers: { Authorization: `Bearer ${apiKey}` },
+	});
+	return res.data; // 配列で返ってくる想定
+}
+
+const qiitaBlogs = await getQiita();
+
+// 並列で OGP をフェッチ
+const ogpImages = await Promise.all(
+	qiitaBlogs.map(async (post: any) => {
+		try {
+			const { result } = await ogs({ url: post.url });
+			// ogImage が配列の場合とオブジェクトの場合の兼ね合いを見る
+			const img = Array.isArray(result.ogImage)
+				? result.ogImage[0]?.url
+				: result.ogImage?.url;
+			return img || "";
+		} catch {
+			return "";
+		}
+	}),
+);
+---
+
+<style>
+	.root-container {
+		display: flex;
+		flex-direction: column;
+	}
+	@media screen and (1140px <= width) {
+		.root-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.blog-card-container {
+		margin: 1rem;
+	}
+	@media screen and (1140px <= width) {
+		.blog-card-container {
+			display: grid;
+			gridtemplate-row: subgrid;
+			grid-row: span 4;
+			margin: 1rem;
+		}
+	}
+</style>
+<div class="root-container">
+	{
+		qiitaBlogs.map((post, index) => (
+			<div class="blog-card-container">
+				<BlogCard
+					postId={post.url}
+					image={ogpImages[index]}
+					title={post.title}
+					pubDate={new Date(post.created_at)}
+				/>
+			</div>
+		))
+	}
+</div>

@@ -2,8 +2,8 @@
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
 import { Image } from "astro:assets";
-import icon from "@pictures/icon.webp";
-import BlogCard from "@components/BlogCard.astro";
+import icon from "@images/icon.webp";
+import LinkCard from "@components/LinkCard.astro";
 
 const clubProperties: { title: string; description: string; url?: string }[] = [
 	{
@@ -16,11 +16,13 @@ const clubProperties: { title: string; description: string; url?: string }[] = [
 		title: "ピアノの会",
 		description:
 			"ゆるくまったりピアノを弾いているサークルです。ピアノは弾けないので聞き専ですが、絶賛練習中です。",
+		url: "http://www.piano.club.uec.ac.jp/top/",
 	},
 	{
 		title: "執行委員会",
 		description:
 			"いわゆる生徒会的な立ち位置の組織です。2024年度ホームページの作成を担当しました。現在は引退済み。",
+		url: "https://www.shikkou.gakuyukai.uec.ac.jp/",
 	},
 	{
 		title: "調布祭実行委員会",
@@ -88,57 +90,55 @@ const clubProperties: { title: string; description: string; url?: string }[] = [
 	}
 </style>
 
-<Layout title="home" , description="home">
-	<div class="root-content">
-		<h1>HOME</h1>
-		<div class="contents-container">
-			<Card headingTitle="Profile">
-				<div class="profile-container">
-					<Image
-						src={icon}
-						alt="アイコンの画像"
-						width="200"
-						height="200"
-						class="icon-setting"
-					/>
-					<div class="profile-content">
-						<p class="name">木村 慎之介</p>
-						<table class="property-content">
-							<tbody>
-								<tr>
-									<th>Age:</th>
-									<td>20</td>
-								</tr>
-								<tr>
-									<th>University:</th>
-									<td>電気通信大学</td>
-								</tr>
-								<tr>
-									<th>Major:</th>
-									<td>コンピュータサイエンス</td>
-								</tr>
-								<tr>
-									<th>Favorite:</th>
-									<td>アニメ・音楽・数学</td>
-								</tr>
-							</tbody>
-						</table>
+<Layout title="top" , description="SHINNのホームページ">
+	<h1>HOME</h1>
+	<div class="contents-container">
+		<Card headingTitle="Profile">
+			<div class="profile-container">
+				<Image
+					src={icon}
+					alt="アイコンの画像"
+					width="200"
+					height="200"
+					class="icon-setting"
+				/>
+				<div class="profile-content">
+					<p class="name">木村 慎之介</p>
+					<table class="property-content">
+						<tbody>
+							<tr>
+								<th>Age:</th>
+								<td>20</td>
+							</tr>
+							<tr>
+								<th>University:</th>
+								<td>電気通信大学</td>
+							</tr>
+							<tr>
+								<th>Major:</th>
+								<td>コンピュータサイエンス</td>
+							</tr>
+							<tr>
+								<th>Favorite:</th>
+								<td>アニメ・音楽・数学</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</Card>
+		<h2>Clubs</h2>
+		<p>所属しているサークル一覧です。</p>
+		{
+			clubProperties.map((clubProperty) => (
+				<div class="club-container">
+					<h3>{clubProperty.title}</h3>
+					<div class="club-description">
+						<p>{clubProperty.description}</p>
+						{clubProperty.url && <LinkCard slug={clubProperty.url} />}
 					</div>
 				</div>
-			</Card>
-			<h2>Clubs</h2>
-			<p>所属しているサークル一覧です。</p>
-			{
-				clubProperties.map((clubProperty) => (
-					<div class="club-container">
-						<h3>{clubProperty.title}</h3>
-						<div class="club-description">
-							<p>{clubProperty.description}</p>
-							{clubProperty.url && <BlogCard slug={clubProperty.url} />}
-						</div>
-					</div>
-				))
-			}
-		</div>
+			))
+		}
 	</div>
 </Layout>

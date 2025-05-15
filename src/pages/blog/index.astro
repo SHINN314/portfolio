@@ -1,6 +1,20 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import BlogCards from "@components/blog/BlogCards.astro";
+import QiitaBlogCards from "@components/blog/QiitaBlogCards.astro";
 ---
 
-<Layout title="blog" , description="about blog"><p>Now on loading...</p></Layout
->
+<style>
+	.root-container {
+	}
+</style>
+
+<Layout title="blog" , description="about blog">
+	<div>
+		<h1>BLOGS</h1>
+		<h2>Original Blogs</h2>
+		<BlogCards />
+		<h2>Qiita Blogs</h2>
+		<QiitaBlogCards />
+	</div>
+</Layout>
