@@ -3,43 +3,32 @@ import axios from "axios";
 import BlogCard from "./BlogCard.astro";
 import ogs from "open-graph-scraper";
 // get qiita blogs
-const getQiita = async () => {
-	try {
-		const url = "https://qiita.com/api/v2/authenticated_user/items";
-		const api_key = import.meta.env.QIITA_API_TOKEN;
-
-		return await axios
-			.get(url, {
-				headers: {
-					Authorization: `Bearer ${api_key}`,
-				},
-			})
-			.then((res) => res.data);
-	} catch (e) {
-		console.error(e);
-	}
-};
+async function getQiita() {
+	const url = "https://qiita.com/api/v2/authenticated_user/items";
+	const apiKey = import.meta.env.QIITA_API_TOKEN;
+	const res = await axios.get(url, {
+		headers: { Authorization: `Bearer ${apiKey}` },
+	});
+	return res.data; // 配列で返ってくる想定
+}
 
 const qiitaBlogs = await getQiita();
 
-// get ogp images
-const ogpImages: string[] = [];
-
-async function getOpenGraphData(url: string) {
-	const option = { url };
-	try {
-		const { result } = await ogs(option);
-		return result;
-	} catch (error) {
-		console.log("Error fetching Open Graph Data:", error);
-		return {};
-	}
-}
-
-for (const post of qiitaBlogs) {
-	const websiteData = await getOpenGraphData(post.url);
-	ogpImages.push(websiteData?.ogImage?.[0]?.url || "");
-}
+// 並列で OGP をフェッチ
+const ogpImages = await Promise.all(
+	qiitaBlogs.map(async (post: any) => {
+		try {
+			const { result } = await ogs({ url: post.url });
+			// ogImage が配列の場合とオブジェクトの場合の兼ね合いを見る
+			const img = Array.isArray(result.ogImage)
+				? result.ogImage[0]?.url
+				: result.ogImage?.url;
+			return img || "";
+		} catch {
+			return "";
+		}
+	}),
+);
 ---
 
 <style>
