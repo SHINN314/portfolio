@@ -3,14 +3,17 @@ import BlogPost from "@layouts/BlogPost.astro";
 import BlogCard from "./BlogCard.astro";
 import Layout from "@layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { preprocess } from "astro:schema";
 
 const blogPosts = await getCollection("blog");
 
+// Sort the blog posts by publication date
 function compareFunction(a: any, b: any) {
 	return a.data.pubDate - b.data.pubDate;
 }
 
-blogPosts.sort(compareFunction);
+// Sort the blog posts in descending newest first order
+blogPosts.sort(compareFunction).reverse();
 ---
 
 <style>
@@ -25,6 +28,7 @@ blogPosts.sort(compareFunction);
 
 	.blog-card-container {
 		margin: 1rem;
+		height: 100%;
 	}
 </style>
 <div class="root-container">

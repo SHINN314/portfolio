@@ -1,0 +1,82 @@
+---
+import axios from "axios";
+import BlogCard from "./BlogCard.astro";
+import ogs from "open-graph-scraper";
+// get qiita blogs
+const getQiita = async () => {
+	try {
+		const url = "https://qiita.com/api/v2/authenticated_user/items";
+		const api_key = import.meta.env.QIITA_API_TOKEN;
+
+		return await axios
+			.get(url, {
+				headers: {
+					Authorization: `Bearer ${api_key}`,
+				},
+			})
+			.then((res) => res.data);
+	} catch (e) {
+		console.error(e);
+	}
+};
+
+const qiitaBlogs = await getQiita();
+
+// get ogp images
+const ogpImages: string[] = [];
+
+async function getOpenGraphData(url: string) {
+	const option = { url };
+	try {
+		const { result } = await ogs(option);
+		return result;
+	} catch (error) {
+		console.log("Error fetching Open Graph Data:", error);
+		return {};
+	}
+}
+
+for (const post of qiitaBlogs) {
+	const websiteData = await getOpenGraphData(post.url);
+	ogpImages.push(websiteData?.ogImage?.[0]?.url || "");
+}
+---
+
+<style>
+	.root-container {
+		display: flex;
+		flex-direction: column;
+	}
+	@media screen and (1140px <= width) {
+		.root-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.blog-card-container {
+		margin: 1rem;
+	}
+	@media screen and (1140px <= width) {
+		.blog-card-container {
+			display: grid;
+			gridtemplate-row: subgrid;
+			grid-row: span 4;
+			margin: 1rem;
+		}
+	}
+</style>
+<div class="root-container">
+	{
+		qiitaBlogs.map((post, index) => (
+			<div class="blog-card-container">
+				<BlogCard
+					postId={post.id}
+					image={ogpImages[index]}
+					title={post.title}
+					pubDate={new Date(post.created_at)}
+				/>
+			</div>
+		))
+	}
+</div>

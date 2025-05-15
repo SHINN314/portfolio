@@ -14,6 +14,7 @@
 		"@astrojs/sitemap": "^3.2.1",
 		"@fontsource-variable/m-plus-1": "^5.1.1",
 		"astro": "^5.2.5",
+		"axios": "^1.9.0",
 		"open-graph-scraper": "^6.9.0"
 	},
 	"devDependencies": {

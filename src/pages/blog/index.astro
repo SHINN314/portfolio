@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import BlogCards from "@components/blog/BlogCards.astro";
+import QiitaBlogCards from "@components/blog/QiitaBlogCards.astro";
 ---
 
 <style>
@@ -10,7 +11,10 @@ import BlogCards from "@components/blog/BlogCards.astro";
 
 <Layout title="blog" , description="about blog">
 	<div>
-		<h1>BLOG</h1>
+		<h1>BLOGS</h1>
+		<h2>ORIGINAL BLOG</h2>
 		<BlogCards />
+		<h2>QIITA BLOGS</h2>
+		<QiitaBlogCards />
 	</div>
 </Layout>
