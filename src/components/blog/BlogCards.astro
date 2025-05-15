@@ -36,7 +36,7 @@ blogPosts.sort(compareFunction).reverse();
 		blogPosts.map((post) => (
 			<div class="blog-card-container">
 				<BlogCard
-					postId={post.id}
+					postId=`/blog/${post.id}`
 					image={post.data.image}
 					title={post.data.title}
 					pubDate={post.data.pubDate}

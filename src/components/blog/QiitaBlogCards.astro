@@ -71,7 +71,7 @@ for (const post of qiitaBlogs) {
 		qiitaBlogs.map((post, index) => (
 			<div class="blog-card-container">
 				<BlogCard
-					postId={post.id}
+					postId={post.url}
 					image={ogpImages[index]}
 					title={post.title}
 					pubDate={new Date(post.created_at)}

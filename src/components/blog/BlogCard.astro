@@ -40,7 +40,7 @@ const displayImage: string | ImageMetadata = image || noImage;
 	}
 </style>
 <Card>
-	<a href={`/blog/${postId}`}>
+	<a href={postId}>
 		<Image src={displayImage} inferSize alt="" class="hero-image-container" />
 		<div class="post-title">{title}</div>
 		<div class="post-date">{pubDate.getFullYear()}年{pubDate.getDay()}月</div>
